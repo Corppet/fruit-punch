@@ -1,51 +1,34 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.SceneManagement;
 
 public class PunchingController : MonoBehaviour
 {
+    public InputActionProperty resetAction;
+    public InputActionProperty velocityAction;
     public float punchForce = 10f;
-
-    private XRController xrController;
-    [SerializeField] private MeshRenderer meshRenderer;
-
-    Color baseColor;
-
-    private void Start()
-    {
-        xrController = GetComponent<XRController>();
-
-        baseColor = meshRenderer.material.color;
-    }
 
     private void Update()
     {
-        if (xrController.inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.5f)
-        {
-            Debug.Log("Trigger pressed");
+        // Vector3 velocity = velocityAction.action.ReadValue<Vector3>();
+        // Debug.Log("Velocity: " + velocity);
 
-            // change the material color to indicate that the trigger is pressed
-            meshRenderer.material.color = Color.red;
-        }
-        else
+        if (resetAction.action.triggered)
         {
-            // change the material color to indicate that the trigger is not pressed
-            meshRenderer.material.color = baseColor;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (xrController.inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.5f)
+        if (other.CompareTag("Fruit"))
         {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                Debug.Log("Punching");
+            Vector3 velocity = velocityAction.action.ReadValue<Vector3>();
 
-                Vector3 punchDirection = collision.contacts[0].point - transform.position;
-                rb.AddForce(punchDirection.normalized * punchForce, ForceMode.Impulse);
-            }
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            rb?.AddForce(velocity.normalized * punchForce, ForceMode.Impulse);
         }
     }
 }
