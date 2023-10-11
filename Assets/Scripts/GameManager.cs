@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnFruit());
+        //StartCoroutine(SpawnFruit());
     }
 
     private void Update()
