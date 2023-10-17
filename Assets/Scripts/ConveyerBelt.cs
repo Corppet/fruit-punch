@@ -47,7 +47,7 @@ public class ConveyorBelt : MonoBehaviour
     private void Update()
     {
         // Move the conveyor belt texture to make it look like it's moving
-        material.mainTextureOffset += conveyorSpeed * Time.deltaTime * new Vector2(0, 1);
+        material.mainTextureOffset -= conveyorSpeed * Time.deltaTime * new Vector2(0, 1);
     }
 
     void FixedUpdate()

@@ -186,7 +186,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6428327762241463156, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   punchAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Punch
       m_Type: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   punchCollider: {fileID: 141692172}
 --- !u!135 &141692172
 SphereCollider:
@@ -430,14 +430,14 @@ MonoBehaviour:
       m_SingletonActionBindings:
       - m_Name: 
         m_Id: 5d199062-d2b2-4628-bebb-796d9302c1f4
-        m_Path: <XRController>/gripPressed
-        m_Interactions: 
+        m_Path: <XRController>/{MenuButton}
+        m_Interactions: Press
         m_Processors: 
         m_Groups: 
         m_Action: Reset
         m_Flags: 0
       m_Flags: 0
-    m_Reference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -6554197400794586906, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   mainMenuScene: Main Menu
   gameOverScene: Game Over
 --- !u!4 &325143662
@@ -579,14 +579,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6443765611106601763, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169631891049266947, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7303196168416792226, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7313654230448209575, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       propertyPath: m_Name
       value: Complete XR Origin Set Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067829889149138881, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9014170783809206332, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1705021434}
     - targetCorrespondingSourceObject: {fileID: 9014170785475729474, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1379334503}
@@ -760,7 +779,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 6708109342807120184, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   punchAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Punch
       m_Type: 0
@@ -770,7 +789,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   punchCollider: {fileID: 1379334503}
 --- !u!135 &1379334503
 SphereCollider:
@@ -793,6 +812,55 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.02
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1705021429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9014170783809206332, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+  m_PrefabInstance: {fileID: 664599322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1705021434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705021429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1739264493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,6 +2136,10 @@ PrefabInstance:
       propertyPath: m_UnmodifiedMeshVersion
       value: 2103
       objectReference: {fileID: 0}
+    - target: {fileID: 3925588047537789055, guid: 661ce3acb8333de4aa5cf82d8b5a8f55, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5ffb23c71776424f8f776c97d3fd190, type: 2}
     - target: {fileID: 4438698397335129233, guid: 661ce3acb8333de4aa5cf82d8b5a8f55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
