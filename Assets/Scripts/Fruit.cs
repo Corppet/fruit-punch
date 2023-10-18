@@ -21,7 +21,7 @@ public enum FruitType
 [RequireComponent(typeof(Collider))]
 public class Fruit : MonoBehaviour
 {
-    public FruitType fruitType { get; private set; }
+    public FruitType fruitType;
 
     private void OnEnable()
     {

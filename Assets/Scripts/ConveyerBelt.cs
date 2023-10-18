@@ -11,11 +11,11 @@ public class ConveyorBelt : MonoBehaviour
 
     [Tooltip("Speed at which objects on the belt will move.")]
     [Range(0f, 100f)]
-    public float speed = 10f;
+    public float speed = 1f;
 
     [Tooltip("Speed at which the conveyor belt texture will move.")]
     [Range(0f, 100f)]
-    public float conveyorSpeed = 10f;
+    public float conveyorSpeed = 1f;
 
     [Space(5)]
 

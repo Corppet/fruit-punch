@@ -24,12 +24,10 @@ public class PunchingController : MonoBehaviour
         if (triggerValue > 0.5f)
         {
             punchCollider.enabled = true;
-            Debug.Log("Punch Enabled");
         }
         else
         {
             punchCollider.enabled = false;
-            Debug.Log("Punch Disabled");
         }
     }
 
