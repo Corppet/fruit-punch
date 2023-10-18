@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Input References")]
 
-    [SerializeField] private InputActionProperty resetAction;
+    [SerializeField] private InputActionProperty[] resetActions;
 
     [Space(5)]
 
@@ -78,9 +78,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (resetAction.action.triggered)
+        foreach (InputActionProperty resetAction in resetActions)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (resetAction.action.triggered)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 

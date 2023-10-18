@@ -19,13 +19,17 @@ public class PunchingController : MonoBehaviour
 
     private void Update()
     {
-        if (punchAction.action.triggered)
+        float triggerValue = punchAction.action.ReadValue<float>();
+
+        if (triggerValue > 0.5f)
         {
             punchCollider.enabled = true;
+            Debug.Log("Punch Enabled");
         }
         else
         {
             punchCollider.enabled = false;
+            Debug.Log("Punch Disabled");
         }
     }
 
@@ -35,8 +39,10 @@ public class PunchingController : MonoBehaviour
         {
             Vector3 velocity = velocityAction.action.ReadValue<Vector3>();
 
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            rb?.AddForce(velocity.normalized * punchForce, ForceMode.Impulse);
+            if (other.TryGetComponent<Rigidbody>(out var rb))
+            {
+                rb.AddForce(velocity.normalized * punchForce, ForceMode.Impulse);
+            }
         }
     }
 }

@@ -1,0 +1,34 @@
+{
+    "name": "FPS Keyboard Actions",
+    "maps": [
+        {
+            "name": "UI Controls",
+            "id": "6499cc48-d88b-4da5-b880-d69ad5c91d56",
+            "actions": [
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "3d0ad142-c54f-4e2e-935e-3567e91182e4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8b4d0ab4-fd51-4db5-bf15-b89443cf5de6",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

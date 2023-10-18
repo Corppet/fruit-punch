@@ -53,12 +53,20 @@ public class ConveyorBelt : MonoBehaviour
     void FixedUpdate()
     {
         // For every item on the belt, add force to it in the direction given
+        //foreach (Rigidbody rb in onBelt)
+        //{
+        //    if (useDirection)
+        //        rb.AddForce(speed * direction, ForceMode.Acceleration);
+        //    else
+        //        rb.AddForce(speed * transform.forward);
+        //}
+
         foreach (Rigidbody rb in onBelt)
         {
             if (useDirection)
-                rb.AddForce(speed * direction, ForceMode.Acceleration);
+                rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction);
             else
-                rb.AddForce(speed * transform.forward, ForceMode.Acceleration);
+                rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * transform.forward);
         }
     }
 
