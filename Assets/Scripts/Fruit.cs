@@ -7,12 +7,12 @@ public enum FruitType
     Apple,
     //Banana,
     Blueberry,
-    Lemon,
+    //Lemon,
     Orange,
     //Pear,
     //Pineapple,
     //Strawberry,
-    //Watermelon
+    Watermelon
 }
 
 /// <summary>
@@ -22,17 +22,4 @@ public enum FruitType
 public class Fruit : MonoBehaviour
 {
     public FruitType fruitType;
-
-    private void OnEnable()
-    {
-        fruitType = (FruitType)Random.Range(0, System.Enum.GetValues(typeof(FruitType)).Length);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Basket"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }

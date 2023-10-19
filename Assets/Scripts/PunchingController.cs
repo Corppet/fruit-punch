@@ -36,10 +36,11 @@ public class PunchingController : MonoBehaviour
         if (other.CompareTag("Fruit"))
         {
             Vector3 velocity = velocityAction.action.ReadValue<Vector3>();
+            velocity.y = .1f;
 
             if (other.TryGetComponent<Rigidbody>(out var rb))
             {
-                rb.AddForce(velocity.normalized * punchForce, ForceMode.Impulse);
+                rb.AddForce(velocity * punchForce, ForceMode.Impulse);
             }
         }
     }

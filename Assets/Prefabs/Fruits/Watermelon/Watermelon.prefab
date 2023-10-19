@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4291206038468183637}
   - component: {fileID: 1493264052748507424}
   m_Layer: 0
-  m_Name: Lemon
+  m_Name: Watermelon
   m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d76d5dba59c8a824a8170635648a356c, type: 2}
+  - {fileID: 2100000, guid: 6b38742730e330c488cc8d7964788813, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203ff43b4d13444489c5ed94a2237027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitType: 2
+  fruitType: 3

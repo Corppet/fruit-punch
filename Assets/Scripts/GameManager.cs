@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [HideInInspector] public bool IsInPlay { get; private set; }
-    [HideInInspector] public int Profit { get; private set; }
-    [HideInInspector] public int Reputation { get; private set; }
+    [HideInInspector] public int Profit { get; set; }
+    [HideInInspector] public int Reputation { get; set; }
+
+
 
     [Header("Fruit Settings")]
 
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void IncompleteBasket(int reputation)
     {
-        Reputation += reputation;
+        Reputation -= reputation;
     }
 
     public void GameOver()
@@ -73,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(SpawnFruit());
+        StartCoroutine(SpawnFruit());
     }
 
     private void Update()

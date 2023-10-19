@@ -26,11 +26,14 @@ public class Basket : MonoBehaviour
     [Range(0, 10)]
     public int maxItemsRange = 2;
 
+    [Tooltip("Potential candidates for the item list (must contain a Fruit Image component).")]
+    public List<GameObject> availableFruits;
+
     [Space(5)]
 
     [Header("Other Settings")]
 
-    [Tooltip("How long an item list can be displayed for before it disappears and is incompleted.")]
+    [Tooltip("How long the basket is available for before it disappears and is incompleted.")]
     [Range(0f, 60f)]
     public float timeLimit = 30f;
 
@@ -46,17 +49,52 @@ public class Basket : MonoBehaviour
     [Range(0, 100)]
     public int reputationPenalty = 10;
 
-    private float remainingTime;
+    [Space(5)]
 
+    [Header("References")]
+
+    [SerializeField] private Transform itemListParent;
+
+    [Tooltip("The points where the collected fruits will be placed. There should be as many points " +
+        "as there are maximum possible items on the item list.")]
+    [SerializeField] private Transform[] collectedPoints;
+
+    private float remainingTime;
+    private int collected;
+    
+    /// <summary>
+    /// Initializes a new `ItemList` and instantiates the fruits on the item list.
+    /// </summary>
     public void GenerateItemList()
     {
+        // Clear the item list
         ItemList = new();
+        foreach (Transform child in itemListParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Transform child in collectedPoints)
+        {
+            if (child.childCount == 0)
+            {
+                continue;
+            }
+
+            foreach (Transform grandchild in child)
+            {
+                Destroy(grandchild.gameObject);
+            }
+        }   
 
         int numItems = Random.Range(minItemsLength, minItemsLength + maxItemsRange);
 
+        // Create a list of items
         for (int i = 0; i < numItems; i++)
         {
-            FruitType fruitType = (FruitType)Random.Range(0, System.Enum.GetValues(typeof(FruitType)).Length);
+            GameObject prefab = availableFruits[Random.Range(0, availableFruits.Count)];
+            FruitImage fruitImage = Instantiate(prefab, itemListParent).GetComponent<FruitImage>();
+            FruitType fruitType = fruitImage.fruitType;
 
             if (ItemList.ContainsKey(fruitType))
             {
@@ -68,14 +106,23 @@ public class Basket : MonoBehaviour
             }
         }
 
+        // Reset time and counter
         remainingTime = timeLimit;
+        collected = 0;
+    }
+
+    private void Start()
+    {
+        GenerateItemList();
     }
 
     private void Update()
     {
+        // Update the remaining time
         if (remainingTime <= 0)
         {
             GameManager.Instance.IncompleteBasket(reputationPenalty);
+            GenerateItemList();
         }
         else
         {
@@ -89,23 +136,49 @@ public class Basket : MonoBehaviour
         {
             Fruit fruit = collision.gameObject.GetComponent<Fruit>();
             CollectFruit(fruit);
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 
     private void CollectFruit(Fruit fruit)
     {
-        FruitType fruitType = fruit.fruitType;
-        if (ItemList.ContainsKey(fruitType))
+        // Remove the fruit from the item list
+        FruitType ft = fruit.fruitType;
+        if (ItemList.ContainsKey(ft))
         {
-            ItemList[fruitType]--;
+            ItemList[ft]--;
 
-            if (ItemList[fruitType] <= 0)
+            if (ItemList[ft] <= 0)
             {
-                ItemList.Remove(fruitType);
+                ItemList.Remove(ft);
             }
         }
+        else
+        {
+            return;
+        }
 
+        // Place the fruit in the collected points
+        if (collected < collectedPoints.Length)
+        {
+            Transform point = collectedPoints[collected];
+            fruit.transform.SetPositionAndRotation(point.position, point.rotation);
+            fruit.transform.parent = point;
+
+            // Disable physics
+            Rigidbody rb = fruit.GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            Collider collider = fruit.GetComponent<Collider>();
+            collider.enabled = false;
+
+            collected++;
+        }
+
+        // Reward when the item list is fulfilled
         if (ItemList.Count == 0)
         {
             GameManager.Instance.CompleteBasket(profitReward, reputationReward);
