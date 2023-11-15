@@ -136,7 +136,6 @@ public class Basket : MonoBehaviour
         {
             Fruit fruit = collision.gameObject.GetComponent<Fruit>();
             CollectFruit(fruit);
-            //Destroy(collision.gameObject);
         }
     }
 

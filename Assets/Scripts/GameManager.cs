@@ -1,3 +1,4 @@
+using SneakySquirrelLabs.MinMaxRangeAttribute;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,8 +11,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool IsInPlay { get; private set; }
     [HideInInspector] public int Profit { get; set; }
     [HideInInspector] public int Reputation { get; set; }
-
-
 
     [Header("Fruit Settings")]
 
@@ -27,6 +26,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] fruitPrefabs;
     [SerializeField] private Transform[] spawnPoints;
 
+    [Space(5)]
+
+    [Header("Day Settings")]
+
+    [MinMaxRange(0, 300)]
+    [SerializeField] private Vector2 dayRange;
 
     [Space(5)]
 
@@ -67,7 +72,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // Destroy this instance if another one already exists
+            Destroy(gameObject);
         }
 
         IsInPlay = true;

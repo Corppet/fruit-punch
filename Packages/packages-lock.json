@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.sneakysquirrellabs.minmaxrangeattribute": {
+      "version": "https://github.com/matheusamazonas/min_max_range_attribute.git?path=Assets/Libraries/MinMaxRangeAttribute#latest",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "34a24cf653a73261d509c6c86e20cc5003853019"
+    },
     "com.unity.burst": {
       "version": "1.8.8",
       "depth": 1,
