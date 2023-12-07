@@ -68,11 +68,12 @@ public class Basket : MonoBehaviour
     public void GenerateItemList()
     {
         // Clear the item list
-        ItemList = new();
-        foreach (Transform child in itemListParent)
+        ItemList.Clear();
+        for (int i = itemListParent.childCount - 1; i >= 0; i--)
         {
-            Destroy(child.gameObject);
+            Destroy(itemListParent.GetChild(i).gameObject);
         }
+
 
         foreach (Transform child in collectedPoints)
         {
@@ -81,9 +82,9 @@ public class Basket : MonoBehaviour
                 continue;
             }
 
-            foreach (Transform grandchild in child)
+            for (int i = child.childCount - 1; i >= 0; i--)
             {
-                Destroy(grandchild.gameObject);
+                Destroy(child.GetChild(i).gameObject);
             }
         }   
 
@@ -106,9 +107,16 @@ public class Basket : MonoBehaviour
             }
         }
 
+        Debug.Log("Item List: " + string.Join(", ", ItemList.Keys) + " " +  string.Join(", ", ItemList.Values));
+
         // Reset time and counter
         remainingTime = timeLimit;
         collected = 0;
+    }
+
+    private void Awake()
+    {
+        ItemList = new();
     }
 
     private void Start()
